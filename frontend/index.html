@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerOne - AI Career Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Career<span>One</span></div>
+
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#features">Features</a>
+            <a href="#about">About</a>
+            <button onclick="showLogin()">Login</button>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+            <p class="tagline">🚀 AI-POWERED CAREER PLATFORM</p>
+
+            <h1>
+                Your Career Journey,
+                <span>One Platform.</span>
+            </h1>
+
+            <p>
+                Discover internships, hackathons, courses and career
+                opportunities with personalized AI-powered guidance.
+            </p>
+
+            <div class="hero-buttons">
+                <button class="primary-btn" onclick="startCareer()">
+                    Start Your Journey →
+                </button>
+
+                <button class="secondary-btn" onclick="showLogin()">
+                    Login
+                </button>
+            </div>
+        </div>
+
+        <div class="hero-card">
+            <div class="card-icon">🤖</div>
+            <h3>AI Career Assistant</h3>
+            <p>Personalized recommendations based on your skills and goals.</p>
+
+            <div class="mini-stat">
+                <div>
+                    <strong>85%</strong>
+                    <small>Career Match</small>
+                </div>
+
+                <div>
+                    <strong>12</strong>
+                    <small>Skills</small>
+                </div>
+
+                <div>
+                    <strong>24</strong>
+                    <small>Opportunities</small>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+    <section class="features" id="features">
+
+        <div class="section-title">
+            <p>WHAT CAREERONE OFFERS</p>
+            <h2>Everything You Need for Your Career</h2>
+        </div>
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3>AI Career Recommendations</h3>
+                <p>
+                    Get personalized internships, courses and career
+                    opportunities based on your skills and goals.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Skill Gap Analysis</h3>
+                <p>
+                    Identify missing skills required for your target
+                    career path.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Career Roadmap</h3>
+                <p>
+                    Follow a personalized step-by-step roadmap towards
+                    internship and placement readiness.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📄</div>
+                <h3>Resume & ATS</h3>
+                <p>
+                    Analyze your resume and improve its ATS compatibility
+                    before applying.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎤</div>
+                <h3>AI Mock Interview</h3>
+                <p>
+                    Practice interviews and receive AI-based feedback.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3>Progress Tracking</h3>
+                <p>
+                    Track your skills, certificates and overall career
+                    preparation progress.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="about" id="about">
+
+        <div>
+            <p class="tagline">WHY CAREERONE?</p>
+
+            <h2>
+                Stop Searching.
+                <span>Start Growing.</span>
+            </h2>
+
+            <p>
+                CareerOne brings opportunities, learning resources,
+                preparation tools and progress tracking into one
+                personalized dashboard.
+            </p>
+        </div>
+
+        <div class="about-box">
+            <div>
+                <strong>01</strong>
+                <p>Create Profile</p>
+            </div>
+
+            <div>
+                <strong>02</strong>
+                <p>AI Analysis</p>
+            </div>
+
+            <div>
+                <strong>03</strong>
+                <p>Skill Gap</p>
+            </div>
+
+            <div>
+                <strong>04</strong>
+                <p>Recommendations</p>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- LOGIN POPUP -->
+
+    <div class="modal" id="loginModal">
+
+        <div class="modal-box">
+
+            <button class="close-btn" onclick="closeLogin()">×</button>
+
+            <div class="login-logo">Career<span>One</span></div>
+
+            <h2>Welcome Back 👋</h2>
+
+            <p>Login to continue your career journey.</p>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+            >
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter password"
+            >
+
+            <button class="primary-btn full-btn" onclick="loginUser()">
+                Login
+            </button>
+
+            <p id="loginMessage"></p>
+
+        </div>
+
+    </div>
+
+
+    <footer>
+        <div class="logo">Career<span>One</span></div>
+
+        <p>
+            AI-powered personalized career journey for students.
+        </p>
+
+        <p>© 2026 CareerOne</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

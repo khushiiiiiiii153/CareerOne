@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CareerOne - Resume ATS Analyzer</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .resume-page {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .resume-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .resume-header h1 {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .resume-header p {
+            color: #697386;
+        }
+
+        .upload-box {
+            background: white;
+            border: 2px dashed #cfd3e2;
+            border-radius: 18px;
+            padding: 50px 30px;
+            text-align: center;
+        }
+
+        .upload-icon {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+
+        .upload-box input {
+            margin: 20px 0;
+        }
+
+        .result {
+            display: none;
+            margin-top: 30px;
+        }
+
+        .score-card {
+            background: linear-gradient(135deg, #635bff, #827bff);
+            color: white;
+            padding: 30px;
+            border-radius: 18px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .score {
+            font-size: 55px;
+            font-weight: bold;
+        }
+
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .analysis-card {
+            background: white;
+            border: 1px solid #e4e7f0;
+            border-radius: 15px;
+            padding: 25px;
+        }
+
+        .analysis-card h3 {
+            margin-bottom: 15px;
+        }
+
+        .analysis-card ul {
+            padding-left: 20px;
+        }
+
+        .analysis-card li {
+            margin-bottom: 10px;
+        }
+
+        .good {
+            color: green;
+        }
+
+        .warning {
+            color: #d97706;
+        }
+
+        @media(max-width:700px) {
+            .analysis-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        Career<span>One</span>
+    </div>
+
+    <a href="dashboard.html"
+       style="text-decoration:none;color:#635bff;">
+        ← Dashboard
+    </a>
+
+</nav>
+
+
+<main class="resume-page">
+
+    <div class="resume-header">
+
+        <p class="tagline">AI RESUME ANALYZER</p>
+
+        <h1>📄 Resume & ATS Analysis</h1>
+
+        <p>
+            Check your resume readiness before applying
+            for internships and placements.
+        </p>
+
+    </div>
+
+
+    <div class="upload-box">
+
+        <div class="upload-icon">
+            📄
+        </div>
+
+        <h2>Upload Your Resume</h2>
+
+        <p style="color:#697386;">
+            Upload your PDF resume for ATS analysis.
+        </p>
+
+        <input
+            type="file"
+            id="resumeFile"
+            accept=".pdf"
+        >
+
+        <br>
+
+        <button
+            class="primary-btn"
+            onclick="analyzeResume()">
+            🤖 Analyze Resume
+        </button>
+
+        <p id="message"></p>
+
+    </div>
+
+
+    <div class="result" id="result">
+
+        <div class="score-card">
+
+            <div>ATS Compatibility Score</div>
+
+            <div class="score" id="score">
+                0%
+            </div>
+
+            <div>
+                Good potential for ATS screening
+            </div>
+
+        </div>
+
+
+        <div class="analysis-grid">
+
+            <div class="analysis-card">
+
+                <h3 class="good">
+                    ✅ Strengths
+                </h3>
+
+                <ul>
+                    <li>Clear resume structure</li>
+                    <li>Technical skills section</li>
+                    <li>Education information included</li>
+                    <li>Project experience highlighted</li>
+                </ul>
+
+            </div>
+
+
+            <div class="analysis-card">
+
+                <h3 class="warning">
+                    ⚠️ Improvements
+                </h3>
+
+                <ul>
+                    <li>Add more job-specific keywords</li>
+                    <li>Improve project descriptions</li>
+                    <li>Add measurable achievements</li>
+                    <li>Use consistent formatting</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+<script>
+
+async function analyzeResume() {
+
+    const fileInput =
+        document.getElementById("resumeFile");
+
+    const message =
+        document.getElementById("message");
+
+    const file = fileInput.files[0];
+
+
+    // Check file
+
+    if (!file) {
+
+        message.style.color = "red";
+
+        message.innerText =
+            "Please select a PDF resume first.";
+
+        return;
+    }
+
+
+    if (file.type !== "application/pdf") {
+
+        message.style.color = "red";
+
+        message.innerText =
+            "Please upload a PDF file.";
+
+        return;
+    }
+
+
+    message.style.color = "#635bff";
+
+    message.innerText =
+        "🤖 Analyzing your resume...";
+
+
+    try {
+
+        const formData =
+            new FormData();
+
+        formData.append(
+            "resume",
+            file
+        );
+
+
+        const response =
+            await fetch(
+                "http://localhost:5000/api/resume",
+                {
+                    method: "POST",
+                    body: formData
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        console.log(
+            "Resume API:",
+            data
+        );
+
+
+        if (!data.success) {
+
+            throw new Error(
+                data.message ||
+                "Resume analysis failed"
+            );
+
+        }
+
+
+        // Show result
+
+        document.getElementById("result")
+            .style.display = "block";
+
+
+        document.getElementById("score")
+            .innerText =
+            data.ats.score + "%";
+
+
+        message.style.color = "green";
+
+        message.innerText =
+            "✅ Resume analysis completed!";
+
+
+        // Strengths
+
+        const strengths =
+            document.querySelector(
+                ".analysis-card ul"
+            );
+
+
+        strengths.innerHTML = "";
+
+        data.ats.strengths.forEach(
+            function(item) {
+
+                strengths.innerHTML +=
+                    `<li>${item}</li>`;
+
+            }
+        );
+
+
+        // Improvements
+
+        const cards =
+            document.querySelectorAll(
+                ".analysis-card ul"
+            );
+
+
+        const improvements =
+            cards[1];
+
+        improvements.innerHTML = "";
+
+
+        data.ats.improvements.forEach(
+            function(item) {
+
+                improvements.innerHTML +=
+                    `<li>${item}</li>`;
+
+            }
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Resume Error:",
+            error
+        );
+
+
+        message.style.color = "red";
+
+        message.innerText =
+            "❌ Backend connection failed.";
+
+    }
+
+}
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CareerOne AI Assistant</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f6f8ff;
+            margin: 0;
+        }
+
+        .container {
+            width: 700px;
+            max-width: 90%;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #635bff;
+        }
+
+        #messages {
+            height: 350px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .message {
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 10px;
+        }
+
+        .user {
+            background: #635bff;
+            color: white;
+            text-align: right;
+        }
+
+        .bot {
+            background: #f0f1ff;
+        }
+
+        .input-area {
+            display: flex;
+            gap: 10px;
+        }
+
+        input {
+            flex: 1;
+            padding: 14px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        button {
+            padding: 14px 25px;
+            background: #635bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🤖 CareerOne AI Assistant</h1>
+
+    <div id="messages">
+
+        <div class="message bot">
+            👋 Hi! I'm CareerOne AI Assistant.
+            <br><br>
+            Ask me about careers, internships,
+            skills or resumes.
+        </div>
+
+    </div>
+
+    <div class="input-area">
+
+        <input
+            id="userInput"
+            placeholder="Ask your career question..."
+        >
+
+        <button onclick="sendMessage()">
+            Send
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+async function sendMessage() {
+
+    const input =
+        document.getElementById("userInput");
+
+    const messages =
+        document.getElementById("messages");
+
+    const text =
+        input.value.trim();
+
+    if (!text) {
+        return;
+    }
+
+
+    messages.innerHTML += `
+        <div class="message user">
+            ${text}
+        </div>
+    `;
+
+    input.value = "";
+
+
+    messages.innerHTML += `
+        <div class="message bot" id="loading">
+            🤖 Thinking...
+        </div>
+    `;
+
+
+    try {
+
+        const response = await fetch(
+            "http://localhost:5000/api/assistant",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    message: text,
+                    profile: null
+                })
+            }
+        );
+
+
+        const data =
+            await response.json();
+
+
+        document.getElementById("loading").remove();
+
+
+        if (!data.success) {
+
+            throw new Error(
+                data.message
+            );
+
+        }
+
+
+        messages.innerHTML += `
+            <div class="message bot">
+                ${data.reply}
+            </div>
+        `;
+
+
+        messages.scrollTop =
+            messages.scrollHeight;
+
+
+    } catch (error) {
+
+        document.getElementById("loading").remove();
+
+        messages.innerHTML += `
+            <div class="message bot">
+                ❌ Backend connection failed.
+                <br><br>
+                Make sure server.js is running.
+            </div>
+        `;
+
+        console.log(error);
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>

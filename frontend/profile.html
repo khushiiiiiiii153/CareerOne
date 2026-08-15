@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CareerOne - Student Profile</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        Career<span>One</span>
+    </div>
+
+</nav>
+
+
+<div style="max-width:700px;margin:60px auto;padding:20px;">
+
+    <div class="feature-card">
+
+        <h1>👤 Create Your Career Profile</h1>
+
+        <p style="color:#697386;margin:10px 0 30px;">
+            Tell us about yourself so CareerOne can analyze your career path.
+        </p>
+
+
+        <input
+            id="name"
+            type="text"
+            placeholder="Full Name"
+            style="width:100%;padding:14px;margin-bottom:15px;border:1px solid #ddd;border-radius:8px;"
+        >
+
+
+        <input
+            id="branch"
+            type="text"
+            placeholder="Branch e.g. CSE"
+            style="width:100%;padding:14px;margin-bottom:15px;border:1px solid #ddd;border-radius:8px;"
+        >
+
+
+        <input
+            id="year"
+            type="text"
+            placeholder="Year e.g. 3rd Year"
+            style="width:100%;padding:14px;margin-bottom:15px;border:1px solid #ddd;border-radius:8px;"
+        >
+
+
+        <input
+            id="skills"
+            type="text"
+            placeholder="Skills e.g. HTML, CSS, JavaScript, Python"
+            style="width:100%;padding:14px;margin-bottom:15px;border:1px solid #ddd;border-radius:8px;"
+        >
+
+
+        <select
+            id="careerGoal"
+            style="width:100%;padding:14px;margin-bottom:20px;border:1px solid #ddd;border-radius:8px;"
+        >
+
+            <option value="">
+                Select Career Goal
+            </option>
+
+            <option value="Software Developer">
+                Software Developer
+            </option>
+
+            <option value="Data Scientist">
+                Data Scientist
+            </option>
+
+            <option value="AI/ML Engineer">
+                AI/ML Engineer
+            </option>
+
+            <option value="Web Developer">
+                Web Developer
+            </option>
+
+        </select>
+
+
+        <button
+            class="primary-btn"
+            style="width:100%;"
+            onclick="analyzeCareer()"
+        >
+            🤖 Analyze My Career
+        </button>
+
+
+        <p
+            id="message"
+            style="text-align:center;margin-top:20px;"
+        ></p>
+
+
+    </div>
+
+</div>
+
+
+<script>
+
+async function analyzeCareer() {
+
+    const name =
+        document.getElementById("name").value.trim();
+
+    const branch =
+        document.getElementById("branch").value.trim();
+
+    const year =
+        document.getElementById("year").value.trim();
+
+    const skills =
+        document.getElementById("skills").value.trim();
+
+    const careerGoal =
+        document.getElementById("careerGoal").value;
+
+    const message =
+        document.getElementById("message");
+
+
+    // Check fields
+
+    if (
+        !name ||
+        !branch ||
+        !year ||
+        !skills ||
+        !careerGoal
+    ) {
+
+        message.style.color = "red";
+
+        message.innerText =
+            "Please fill all fields.";
+
+        return;
+    }
+
+
+    message.style.color = "#635bff";
+
+    message.innerText =
+        "🤖 AI is analyzing your profile...";
+
+
+    try {
+
+        const response = await fetch(
+            "http://localhost:5000/api/analyze",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+
+                    name: name,
+
+                    branch: branch,
+
+                    year: year,
+
+                    skills: skills,
+
+                    careerGoal: careerGoal
+
+                })
+            }
+        );
+
+
+        const data =
+            await response.json();
+
+
+        console.log("API DATA:", data);
+
+
+        if (!data.success) {
+
+            throw new Error(
+                data.message ||
+                "Analysis failed"
+            );
+
+        }
+
+
+        // Save analysis
+
+        localStorage.setItem(
+            "careerAnalysis",
+            JSON.stringify(data)
+        );
+
+
+        message.style.color = "green";
+
+        message.innerText =
+            "✅ Analysis completed!";
+
+
+        // Open dashboard
+
+        setTimeout(function() {
+
+            window.location.href =
+                "dashboard.html";
+
+        }, 500);
+
+
+    } catch (error) {
+
+        console.error(
+            "CareerOne Error:",
+            error
+        );
+
+        message.style.color = "red";
+
+        message.innerText =
+            "❌ Backend connection failed.";
+
+    }
+
+}
+
+</script>
+
+
+</body>
+
+</html>
