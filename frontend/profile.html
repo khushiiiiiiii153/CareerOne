@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta name="viewport"
@@ -11,12 +10,9 @@
     <title>CareerOne - Student Profile</title>
 
     <link rel="stylesheet" href="style.css">
-
 </head>
 
-
 <body>
-
 
 <nav class="navbar">
 
@@ -27,33 +23,22 @@
 </nav>
 
 
-
 <div style="
     max-width:700px;
     margin:60px auto;
     padding:20px;
 ">
 
-
     <div class="feature-card">
 
-
-        <h1>
-            👤 Create Your Career Profile
-        </h1>
-
+        <h1>👤 Create Your Career Profile</h1>
 
         <p style="
             color:#697386;
             margin:10px 0 30px;
         ">
-
-            Tell us about yourself so
-            CareerOne can analyze your
-            career path.
-
+            Tell us about yourself so CareerOne can analyze your career path.
         </p>
-
 
 
         <!-- NAME -->
@@ -72,7 +57,6 @@
         >
 
 
-
         <!-- BRANCH -->
 
         <input
@@ -87,7 +71,6 @@
                 border-radius:8px;
             "
         >
-
 
 
         <!-- YEAR -->
@@ -106,7 +89,6 @@
         >
 
 
-
         <!-- SKILLS -->
 
         <input
@@ -121,7 +103,6 @@
                 border-radius:8px;
             "
         >
-
 
 
         <!-- CAREER GOAL -->
@@ -141,28 +122,23 @@
                 Select Career Goal
             </option>
 
-
             <option value="Software Developer">
                 Software Developer
             </option>
-
 
             <option value="Data Scientist">
                 Data Scientist
             </option>
 
-
             <option value="AI/ML Engineer">
                 AI/ML Engineer
             </option>
-
 
             <option value="Web Developer">
                 Web Developer
             </option>
 
         </select>
-
 
 
         <!-- ANALYZE BUTTON -->
@@ -172,11 +148,8 @@
             style="width:100%;"
             onclick="analyzeCareer()"
         >
-
             🤖 Analyze My Career
-
         </button>
-
 
 
         <p
@@ -187,49 +160,35 @@
             "
         ></p>
 
-
     </div>
 
 </div>
-
 
 
 <script>
 
 async function analyzeCareer() {
 
-
     const name =
-        document.getElementById("name")
-        .value.trim();
-
+        document.getElementById("name").value.trim();
 
     const branch =
-        document.getElementById("branch")
-        .value.trim();
-
+        document.getElementById("branch").value.trim();
 
     const year =
-        document.getElementById("year")
-        .value.trim();
-
+        document.getElementById("year").value.trim();
 
     const skills =
-        document.getElementById("skills")
-        .value.trim();
-
+        document.getElementById("skills").value.trim();
 
     const careerGoal =
-        document.getElementById("careerGoal")
-        .value;
-
+        document.getElementById("careerGoal").value;
 
     const message =
         document.getElementById("message");
 
 
-
-    // ================= VALIDATION =================
+    // Check fields
 
     if (
         !name ||
@@ -245,10 +204,10 @@ async function analyzeCareer() {
             "Please fill all fields.";
 
         return;
-
     }
 
 
+    // Show loading
 
     message.style.color = "#635bff";
 
@@ -256,113 +215,83 @@ async function analyzeCareer() {
         "🤖 AI is analyzing your profile...";
 
 
-
     try {
 
-
         const response = await fetch(
-            "https://careerone-backend.onrender.com/api/login",
+            "https://careerone-backend.onrender.com/api/analyze",
             {
-
                 method: "POST",
 
                 headers: {
-
-                    "Content-Type":
-                        "application/json"
-
+                    "Content-Type": "application/json"
                 },
 
                 body: JSON.stringify({
 
                     name: name,
-
                     branch: branch,
-
                     year: year,
-
                     skills: skills,
-
-                    careerGoal:
-                        careerGoal
+                    careerGoal: careerGoal
 
                 })
-
             }
         );
-
 
 
         const data =
             await response.json();
 
 
-
-        console.log(
-            "Analysis Response:",
-            data
-        );
+        console.log("API DATA:", data);
 
 
+        if (!response.ok) {
 
-        if (data.success === true) {
-
-
-            // SAVE PROFILE
-
-            localStorage.setItem(
-                "careerAnalysis",
-                JSON.stringify(data)
-            );
-
-
-
-            message.style.color = "green";
-
-            message.innerText =
-                "✅ Analysis completed!";
-
-
-
-            // OPEN DASHBOARD
-
-            setTimeout(function () {
-
-                window.location.href =
-                    "dashboard.html";
-
-            }, 1000);
-
-
-        }
-
-        else {
-
-            message.style.color =
-                "red";
+            message.style.color = "red";
 
             message.innerText =
                 data.message ||
-                "Analysis failed.";
+                "Career analysis failed.";
 
+            return;
         }
 
 
-    }
+        // Save analysis
 
-
-    catch (error) {
-
-
-        console.error(
-            "Career Analysis Error:",
-            error
+        localStorage.setItem(
+            "careerAnalysis",
+            JSON.stringify(data)
         );
 
 
-        message.style.color =
-            "red";
+        // Success
 
+        message.style.color = "green";
+
+        message.innerText =
+            "✅ Analysis completed!";
+
+
+        // Open dashboard
+
+        setTimeout(() => {
+
+            window.location.href =
+                "dashboard.html";
+
+        }, 800);
+
+
+    } catch (error) {
+
+        console.error(
+            "CareerOne Error:",
+            error
+        );
+
+        message.style.color = "red";
 
         message.innerText =
             "❌ Backend connection failed.";
@@ -372,7 +301,6 @@ async function analyzeCareer() {
 }
 
 </script>
-
 
 </body>
 
