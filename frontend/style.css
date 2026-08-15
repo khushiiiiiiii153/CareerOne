@@ -1392,3 +1392,511 @@ footer p {
     }
 
 }
+
+/* =========================================================
+   CAREERONE DASHBOARD
+   ========================================================= */
+
+.dashboard-nav {
+    height: 72px;
+    padding: 0 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid #e7e9f3;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+}
+
+.dashboard-nav .logo {
+    font-size: 27px;
+}
+
+.nav-title {
+    font-weight: 700;
+    color: #4d566b;
+    letter-spacing: .3px;
+}
+
+.logout-btn {
+    border: 1px solid #635bff;
+    background: white;
+    color: #635bff;
+    padding: 10px 20px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: .25s;
+}
+
+.logout-btn:hover {
+    background: #635bff;
+    color: white;
+}
+
+
+/* ================= HERO ================= */
+
+.opportunity-hero {
+    position: relative;
+    overflow: hidden;
+    min-height: 330px;
+    padding: 65px 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background:
+        radial-gradient(circle at 10% 20%, rgba(99,91,255,.18), transparent 30%),
+        radial-gradient(circle at 85% 80%, rgba(0,200,170,.14), transparent 30%),
+        linear-gradient(135deg, #f7f8ff, #eef0ff);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+}
+
+.hero-badge {
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 30px;
+    background: white;
+    color: #635bff;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    box-shadow: 0 8px 25px rgba(50,55,100,.08);
+    margin-bottom: 18px;
+}
+
+.opportunity-hero h1 {
+    font-size: 58px;
+    line-height: 1.05;
+    margin-bottom: 18px;
+    letter-spacing: -2px;
+}
+
+.opportunity-hero h1 span {
+    color: #635bff;
+}
+
+.opportunity-hero p {
+    max-width: 650px;
+    color: #687286;
+    font-size: 18px;
+}
+
+.hero-emoji {
+    position: relative;
+    z-index: 2;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 35px;
+    font-size: 75px;
+    transform: rotate(6deg);
+    box-shadow: 0 25px 60px rgba(55,60,110,.15);
+}
+
+
+/* Decorative circles */
+
+.hero-decoration {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.circle-one {
+    width: 220px;
+    height: 220px;
+    right: 15%;
+    top: -110px;
+    background: rgba(99,91,255,.08);
+}
+
+.circle-two {
+    width: 180px;
+    height: 180px;
+    left: 35%;
+    bottom: -100px;
+    background: rgba(0,190,160,.08);
+}
+
+
+/* ================= MAIN ================= */
+
+.opportunity-container {
+    width: min(1180px, 84%);
+    margin: auto;
+    padding: 70px 0;
+}
+
+.opportunity-section {
+    margin-bottom: 85px;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 30px;
+}
+
+.section-heading > div:first-child > span {
+    color: #635bff;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+}
+
+.section-heading h2 {
+    font-size: 34px;
+    margin: 7px 0;
+    letter-spacing: -.8px;
+}
+
+.section-heading p {
+    color: #697386;
+}
+
+.section-number {
+    font-size: 55px;
+    font-weight: 900;
+    color: #ececff;
+    line-height: 1;
+}
+
+
+/* ================= CARDS ================= */
+
+.decorative-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.decorative-card {
+    position: relative;
+    overflow: hidden;
+    padding: 28px;
+    min-height: 355px;
+    background: white;
+    border: 1px solid #e7e9f2;
+    border-radius: 22px;
+    box-shadow: 0 10px 35px rgba(35,40,80,.06);
+    transition: transform .3s, box-shadow .3s;
+}
+
+.decorative-card:hover {
+    transform: translateY(-9px);
+    box-shadow: 0 22px 50px rgba(40,45,90,.13);
+}
+
+.card-decoration {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    right: -55px;
+    top: -55px;
+    background: rgba(99,91,255,.07);
+}
+
+.big-icon {
+    width: 65px;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    font-size: 32px;
+    margin-bottom: 17px;
+}
+
+.purple-icon {
+    background: #eeecff;
+}
+
+.green-icon {
+    background: #e8fbf2;
+}
+
+.orange-icon {
+    background: #fff3e4;
+}
+
+.blue-icon {
+    background: #e8f3ff;
+}
+
+.pink-icon {
+    background: #ffeaf4;
+}
+
+
+.card-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background: #eeecff;
+    color: #635bff;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .7px;
+    margin-bottom: 12px;
+}
+
+.green-badge {
+    background: #e8fbf2;
+    color: #15966b;
+}
+
+.orange-badge {
+    background: #fff3e4;
+    color: #d87c12;
+}
+
+.blue-badge {
+    background: #e8f3ff;
+    color: #2477c5;
+}
+
+.pink-badge {
+    background: #ffeaf4;
+    color: #d34a88;
+}
+
+.decorative-card h3 {
+    font-size: 21px;
+    margin-bottom: 10px;
+}
+
+.decorative-card > p {
+    color: #697386;
+    min-height: 70px;
+}
+
+.card-info {
+    display: flex;
+    gap: 20px;
+    padding: 15px 0;
+    color: #747d90;
+    font-size: 13px;
+    border-top: 1px solid #edf0f5;
+    border-bottom: 1px solid #edf0f5;
+    margin: 15px 0;
+}
+
+.card-button {
+    width: 100%;
+    border: none;
+    padding: 12px 17px;
+    border-radius: 10px;
+    background: #635bff;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.card-button span {
+    float: right;
+    font-size: 18px;
+}
+
+.card-button:hover {
+    background: #5149e8;
+    transform: translateY(-2px);
+}
+
+.green-button {
+    background: #15966b;
+}
+
+.green-button:hover {
+    background: #107d59;
+}
+
+.orange-button {
+    background: #e88921;
+}
+
+.orange-button:hover {
+    background: #cf7615;
+}
+
+.blue-button {
+    background: #2477c5;
+}
+
+.blue-button:hover {
+    background: #1765aa;
+}
+
+.pink-button {
+    background: #d34a88;
+}
+
+.pink-button:hover {
+    background: #b93872;
+}
+
+
+/* ================= HACKATHONS ================= */
+
+.hackathon-card {
+    background: linear-gradient(145deg, #171b2d, #252b45);
+    color: white;
+    border: none;
+}
+
+.hackathon-card > p {
+    color: #b9bfd0;
+}
+
+.hackathon-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 36px;
+    margin-bottom: 25px;
+}
+
+.hackathon-top span {
+    font-size: 10px;
+    padding: 7px 12px;
+    border-radius: 20px;
+    background: #635bff;
+    letter-spacing: 1px;
+}
+
+.web-hack span {
+    background: #168fcb;
+}
+
+.campus-hack span {
+    background: #15966b;
+}
+
+.hackathon-card h3 {
+    color: white;
+}
+
+.hackathon-date {
+    margin: 20px 0;
+    padding: 10px 12px;
+    border-radius: 9px;
+    background: rgba(255,255,255,.08);
+    color: #d7dbea;
+    font-size: 13px;
+}
+
+.dark-button {
+    background: white;
+    color: #20243a;
+}
+
+.dark-button:hover {
+    background: #635bff;
+    color: white;
+}
+
+
+/* ================= FOOTER ================= */
+
+.dashboard-footer {
+    text-align: center;
+    padding: 45px 20px;
+    background: #151a2b;
+    color: white;
+}
+
+.dashboard-footer .logo {
+    color: white;
+    margin-bottom: 10px;
+}
+
+.dashboard-footer p {
+    color: #aeb5c8;
+    margin-bottom: 8px;
+}
+
+.dashboard-footer small {
+    color: #777f96;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 950px) {
+
+    .decorative-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .opportunity-hero {
+        padding: 55px 6%;
+    }
+
+    .hero-emoji {
+        width: 120px;
+        height: 120px;
+        font-size: 60px;
+    }
+}
+
+@media (max-width: 650px) {
+
+    .dashboard-nav {
+        padding: 0 5%;
+    }
+
+    .nav-title {
+        display: none;
+    }
+
+    .opportunity-hero {
+        text-align: center;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .opportunity-hero h1 {
+        font-size: 42px;
+    }
+
+    .hero-emoji {
+        width: 100px;
+        height: 100px;
+        font-size: 50px;
+    }
+
+    .opportunity-container {
+        width: 90%;
+        padding: 50px 0;
+    }
+
+    .decorative-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-heading {
+        align-items: flex-start;
+    }
+
+    .section-number {
+        font-size: 38px;
+    }
+
+    .section-heading h2 {
+        font-size: 28px;
+    }
+}
