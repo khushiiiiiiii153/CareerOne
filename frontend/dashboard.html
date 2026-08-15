@@ -2,491 +2,499 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>CareerOne Dashboard</title>
+    <title>CareerOne - Opportunities</title>
 
     <link rel="stylesheet" href="style.css">
-
-    <style>
-
-        .dashboard {
-            padding: 40px 7%;
-        }
-
-        .dashboard-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-        .dashboard-header h1 {
-            font-size: 32px;
-        }
-
-        .dashboard-header p {
-            color: #697386;
-        }
-
-        .logout-btn {
-            border: 1px solid #635bff;
-            color: #635bff;
-            background: white;
-            padding: 10px 18px;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        .profile-box {
-            background: linear-gradient(135deg, #635bff, #827bff);
-            color: white;
-            padding: 30px;
-            border-radius: 18px;
-            margin-bottom: 25px;
-        }
-
-        .profile-box h2 {
-            margin-bottom: 8px;
-        }
-
-        .profile-details {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-
-        .profile-details span {
-            background: rgba(255,255,255,0.18);
-            padding: 8px 14px;
-            border-radius: 20px;
-        }
-
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .dashboard-card {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            border: 1px solid #e4e7f0;
-        }
-
-        .dashboard-card .icon {
-            font-size: 30px;
-        }
-
-        .dashboard-card h3 {
-            margin: 10px 0;
-        }
-
-        .dashboard-card p {
-            color: #697386;
-        }
-
-        .analysis {
-            background: white;
-            padding: 30px;
-            border-radius: 18px;
-            border: 1px solid #e4e7f0;
-            margin-bottom: 30px;
-        }
-
-        .skill {
-            margin-bottom: 20px;
-        }
-
-        .skill-title {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 7px;
-        }
-
-        .skill-title span:last-child {
-            color: #635bff;
-            font-weight: bold;
-        }
-
-        .progress {
-            height: 9px;
-            background: #e8eaf2;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: #635bff;
-        }
-
-        .recommendations {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .recommendation {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            border: 1px solid #e4e7f0;
-        }
-
-        .recommendation small {
-            color: #635bff;
-            font-weight: bold;
-        }
-
-        .recommendation h3 {
-            margin: 8px 0;
-        }
-
-        .recommendation p {
-            color: #697386;
-        }
-
-        .recommendation button {
-            margin-top: 15px;
-            border: none;
-            background: #635bff;
-            color: white;
-            padding: 9px 15px;
-            border-radius: 7px;
-            cursor: pointer;
-        }
-
-        .resume-box {
-            background: white;
-            padding: 30px;
-            border-radius: 18px;
-            border: 1px solid #e4e7f0;
-            margin-bottom: 25px;
-        }
-
-        .resume-box p {
-            color: #697386;
-            margin: 10px 0 20px;
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .action-btn {
-            border: none;
-            background: #635bff;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 15px;
-        }
-
-        .action-btn:hover {
-            opacity: 0.9;
-        }
-
-        .skill-tag {
-            display: inline-block;
-            padding: 8px 14px;
-            margin: 5px;
-            background: #f0f1ff;
-            color: #635bff;
-            border-radius: 20px;
-            font-weight: 600;
-        }
-
-        .loading {
-            text-align: center;
-            padding: 100px 20px;
-        }
-
-        .no-data {
-            color: #697386;
-            padding: 15px 0;
-        }
-
-        @media(max-width:800px) {
-
-            .dashboard-grid,
-            .recommendations {
-                grid-template-columns: 1fr;
-            }
-
-            .dashboard-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
-
-            .action-buttons {
-                flex-direction: column;
-            }
-
-            .action-btn {
-                width: 100%;
-            }
-
-        }
-
-    </style>
-
 </head>
-
 
 <body>
 
-
 <!-- ================= NAVBAR ================= -->
 
-<nav class="navbar">
+<nav class="dashboard-nav">
 
     <div class="logo">
         Career<span>One</span>
     </div>
 
-    <button
-        class="logout-btn"
-        onclick="logout()">
+    <div class="nav-title">
+        Career Opportunities
+    </div>
 
+    <button class="logout-btn" onclick="logout()">
         Logout
-
     </button>
 
 </nav>
 
 
-<!-- ================= LOADING ================= -->
+<!-- ================= HERO ================= -->
 
-<div
-    id="loading"
-    class="loading">
+<section class="opportunity-hero">
 
-    <h2>
-        🤖 Loading your CareerOne analysis...
-    </h2>
+    <div class="hero-decoration circle-one"></div>
+    <div class="hero-decoration circle-two"></div>
 
-</div>
+    <div class="hero-content">
 
+        <span class="hero-badge">
+            ✨ CAREERONE OPPORTUNITIES
+        </span>
 
-<!-- ================= DASHBOARD ================= -->
-
-<main
-    class="dashboard"
-    id="dashboard"
-    style="display:none;">
-
-
-    <!-- HEADER -->
-
-    <div class="dashboard-header">
-
-        <div>
-
-            <h1>
-                Career Dashboard 🚀
-            </h1>
-
-            <p id="welcomeUser"></p>
-
-        </div>
-
-    </div>
-
-
-    <!-- ================= PROFILE ================= -->
-
-    <div class="profile-box">
-
-        <h2>
-            🤖 AI Career Analysis
-        </h2>
+        <h1>
+            Learn. Build.
+            <span>Grow.</span>
+        </h1>
 
         <p>
-            Your personalized career analysis is ready.
+            Discover courses, internships and hackathons
+            selected to help you achieve your career goals.
         </p>
-
-
-        <div class="profile-details">
-
-            <span id="studentBranch"></span>
-
-            <span id="studentYear"></span>
-
-            <span id="studentGoal"></span>
-
-        </div>
 
     </div>
 
+    <div class="hero-emoji">
+        🚀
+    </div>
 
-    <!-- ================= STATS ================= -->
-
-    <div class="dashboard-grid">
+</section>
 
 
-        <!-- CAREER MATCH -->
+<!-- ================= MAIN ================= -->
 
-        <div class="dashboard-card">
+<main class="opportunity-container">
 
-            <div class="icon">
-                🎯
+
+    <!-- ================= COURSES ================= -->
+
+    <section class="opportunity-section">
+
+        <div class="section-heading">
+
+            <div>
+
+                <span>📚 LEARN NEW SKILLS</span>
+
+                <h2>
+                    Recommended Courses
+                </h2>
+
+                <p>
+                    Build the skills you need for your dream career.
+                </p>
+
             </div>
 
-            <h3>
-                Career Match
-            </h3>
-
-            <h2 id="careerMatch">
-                --
-            </h2>
-
-            <p>
-                Career compatibility
-            </p>
+            <div class="section-number">
+                01
+            </div>
 
         </div>
 
 
-        <!-- SKILLS -->
-
-        <div class="dashboard-card">
-
-            <div class="icon">
-                📚
-            </div>
-
-            <h3>
-                Skills
-            </h3>
-
-            <h2 id="skillCount">
-                --
-            </h2>
-
-            <p>
-                Skills identified
-            </p>
-
-        </div>
+        <div class="decorative-grid">
 
 
-        <!-- READINESS -->
+            <!-- COURSE 1 -->
 
-        <div class="dashboard-card">
+            <div class="decorative-card course-card">
 
-            <div class="icon">
-                📈
-            </div>
+                <div class="card-decoration"></div>
 
-            <h3>
-                Career Readiness
-            </h3>
-
-            <h2 id="readiness">
-                --
-            </h2>
-
-            <div class="progress">
-
-                <div
-                    id="readinessBar"
-                    class="progress-bar">
+                <div class="big-icon purple-icon">
+                    🌐
                 </div>
 
+                <div class="card-badge">
+                    BEGINNER
+                </div>
+
+                <h3>
+                    Web Development
+                </h3>
+
+                <p>
+                    Master HTML, CSS, JavaScript & React
+                    and build modern websites.
+                </p>
+
+                <div class="card-info">
+                    <span>⏱ 8 Weeks</span>
+                    <span>⭐ 4.8</span>
+                </div>
+
+                <button
+                    onclick="openLink('https://www.coursera.org/')"
+                    class="card-button"
+                >
+                    View Course
+                    <span>→</span>
+                </button>
+
+            </div>
+
+
+            <!-- COURSE 2 -->
+
+            <div class="decorative-card course-card">
+
+                <div class="card-decoration"></div>
+
+                <div class="big-icon green-icon">
+                    🐍
+                </div>
+
+                <div class="card-badge green-badge">
+                    POPULAR
+                </div>
+
+                <h3>
+                    Python Programming
+                </h3>
+
+                <p>
+                    Learn Python fundamentals and create
+                    practical real-world projects.
+                </p>
+
+                <div class="card-info">
+                    <span>⏱ 6 Weeks</span>
+                    <span>⭐ 4.9</span>
+                </div>
+
+                <button
+                    onclick="openLink('https://www.coursera.org/')"
+                    class="card-button green-button"
+                >
+                    View Course
+                    <span>→</span>
+                </button>
+
+            </div>
+
+
+            <!-- COURSE 3 -->
+
+            <div class="decorative-card course-card">
+
+                <div class="card-decoration"></div>
+
+                <div class="big-icon orange-icon">
+                    🧠
+                </div>
+
+                <div class="card-badge orange-badge">
+                    INTERMEDIATE
+                </div>
+
+                <h3>
+                    Data Structures & Algorithms
+                </h3>
+
+                <p>
+                    Prepare for coding interviews and
+                    technical placement rounds.
+                </p>
+
+                <div class="card-info">
+                    <span>⏱ 10 Weeks</span>
+                    <span>⭐ 4.7</span>
+                </div>
+
+                <button
+                    onclick="openLink('https://www.coursera.org/')"
+                    class="card-button orange-button"
+                >
+                    View Course
+                    <span>→</span>
+                </button>
+
             </div>
 
         </div>
-
-
-    </div>
-
-
-    <!-- ================= TOOLS ================= -->
-
-    <div class="resume-box">
-
-        <h2>
-            🛠️ CareerOne Tools
-        </h2>
-
-        <p>
-            Improve your career profile with CareerOne's tools.
-        </p>
-
-
-        <div class="action-buttons">
-
-
-            <!-- RESUME -->
-
-            <button
-                class="action-btn"
-                onclick="window.location.href='resume.html'">
-
-                📄 Analyze My Resume →
-
-            </button>
-
-
-            <!-- AI ASSISTANT -->
-
-            <button
-                class="action-btn"
-                onclick="window.location.href='ai-assistant.html'">
-
-                🤖 Ask CareerOne AI →
-
-            </button>
-
-
-        </div>
-
-    </div>
-
-
-    <!-- ================= SKILL GAP ================= -->
-
-    <section class="analysis">
-
-        <h2>
-            📊 Skill Gap Analysis
-        </h2>
-
-        <p style="color:#697386;margin:8px 0 20px;">
-
-            Skills recommended for your career goal.
-
-        </p>
-
-        <div id="skillsContainer"></div>
 
     </section>
 
 
-    <!-- ================= RECOMMENDATIONS ================= -->
 
-    <h2 style="margin-bottom:20px;">
+    <!-- ================= INTERNSHIPS ================= -->
 
-        🎯 Personalized Recommendations
+    <section class="opportunity-section">
 
-    </h2>
+        <div class="section-heading">
+
+            <div>
+
+                <span>💼 START YOUR CAREER</span>
+
+                <h2>
+                    Internship Opportunities
+                </h2>
+
+                <p>
+                    Gain experience by working on real-world projects.
+                </p>
+
+            </div>
+
+            <div class="section-number">
+                02
+            </div>
+
+        </div>
 
 
-    <section
-        class="recommendations"
-        id="recommendationsContainer">
+        <div class="decorative-grid">
+
+
+            <!-- INTERNSHIP 1 -->
+
+            <div class="decorative-card internship-card">
+
+                <div class="big-icon blue-icon">
+                    💻
+                </div>
+
+                <div class="card-badge blue-badge">
+                    REMOTE
+                </div>
+
+                <h3>
+                    Software Developer Intern
+                </h3>
+
+                <p>
+                    Build real-world software projects
+                    and improve your development skills.
+                </p>
+
+                <div class="card-info">
+                    <span>💰 Stipend</span>
+                    <span>📍 Remote</span>
+                </div>
+
+                <button
+                    onclick="openLink('https://internshala.com/')"
+                    class="card-button blue-button"
+                >
+                    Apply Now
+                    <span>→</span>
+                </button>
+
+            </div>
+
+
+            <!-- INTERNSHIP 2 -->
+
+            <div class="decorative-card internship-card">
+
+                <div class="big-icon pink-icon">
+                    🎨
+                </div>
+
+                <div class="card-badge pink-badge">
+                    TRENDING
+                </div>
+
+                <h3>
+                    Web Developer Intern
+                </h3>
+
+                <p>
+                    Create responsive and interactive
+                    web applications.
+                </p>
+
+                <div class="card-info">
+                    <span>💰 Stipend</span>
+                    <span>📍 Remote</span>
+                </div>
+
+                <button
+                    onclick="openLink('https://internshala.com/')"
+                    class="card-button pink-button"
+                >
+                    Apply Now
+                    <span>→</span>
+                </button>
+
+            </div>
+
+
+            <!-- INTERNSHIP 3 -->
+
+            <div class="decorative-card internship-card">
+
+                <div class="big-icon purple-icon">
+                    🤖
+                </div>
+
+                <div class="card-badge">
+                    AI / ML
+                </div>
+
+                <h3>
+                    AI/ML Intern
+                </h3>
+
+                <p>
+                    Work on Machine Learning and
+                    Artificial Intelligence projects.
+                </p>
+
+                <div class="card-info">
+                    <span>💰 Stipend</span>
+                    <span>📍 Hybrid</span>
+                </div>
+
+                <button
+                    onclick="openLink('https://internshala.com/')"
+                    class="card-button"
+                >
+                    Apply Now
+                    <span>→</span>
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= HACKATHONS ================= -->
+
+    <section class="opportunity-section">
+
+        <div class="section-heading">
+
+            <div>
+
+                <span>🚀 BUILD SOMETHING AMAZING</span>
+
+                <h2>
+                    Hackathons
+                </h2>
+
+                <p>
+                    Turn your ideas into innovative solutions.
+                </p>
+
+            </div>
+
+            <div class="section-number">
+                03
+            </div>
+
+        </div>
+
+
+        <div class="decorative-grid">
+
+
+            <!-- HACKATHON 1 -->
+
+            <div class="decorative-card hackathon-card">
+
+                <div class="hackathon-top">
+                    🤖
+                    <span>AI</span>
+                </div>
+
+                <h3>
+                    AI Innovation Hackathon
+                </h3>
+
+                <p>
+                    Build innovative AI solutions for
+                    real-world problems.
+                </p>
+
+                <div class="hackathon-date">
+                    🗓 Registration Open
+                </div>
+
+                <button
+                    onclick="openLink('https://devpost.com/')"
+                    class="card-button dark-button"
+                >
+                    Explore Hackathon
+                    <span>→</span>
+                </button>
+
+            </div>
+
+
+            <!-- HACKATHON 2 -->
+
+            <div class="decorative-card hackathon-card">
+
+                <div class="hackathon-top web-hack">
+                    🌐
+                    <span>WEB</span>
+                </div>
+
+                <h3>
+                    Web Development Hackathon
+                </h3>
+
+                <p>
+                    Create next-generation web
+                    applications and experiences.
+                </p>
+
+                <div class="hackathon-date">
+                    🗓 Registration Open
+                </div>
+
+                <button
+                    onclick="openLink('https://devpost.com/')"
+                    class="card-button dark-button"
+                >
+                    Explore Hackathon
+                    <span>→</span>
+                </button>
+
+            </div>
+
+
+            <!-- HACKATHON 3 -->
+
+            <div class="decorative-card hackathon-card">
+
+                <div class="hackathon-top campus-hack">
+                    🏫
+                    <span>CAMPUS</span>
+                </div>
+
+                <h3>
+                    Smart Campus Hackathon
+                </h3>
+
+                <p>
+                    Develop technology solutions
+                    for smarter campuses.
+                </p>
+
+                <div class="hackathon-date">
+                    🗓 Registration Open
+                </div>
+
+                <button
+                    onclick="openLink('https://devpost.com/')"
+                    class="card-button dark-button"
+                >
+                    Explore Hackathon
+                    <span>→</span>
+                </button>
+
+            </div>
+
+        </div>
 
     </section>
 
@@ -494,392 +502,42 @@
 </main>
 
 
-<!-- ================= JAVASCRIPT ================= -->
+<!-- ================= FOOTER ================= -->
+
+<footer class="dashboard-footer">
+
+    <div class="logo">
+        Career<span>One</span>
+    </div>
+
+    <p>
+        Your personalized AI-powered career journey.
+    </p>
+
+    <small>
+        © 2026 CareerOne
+    </small>
+
+</footer>
+
 
 <script>
 
-
-function showDashboard(data) {
-
-
-    console.log(
-        "CareerOne Dashboard Data:",
-        data
-    );
-
-
-    const student =
-        data.student;
-
-
-    const analysis =
-        data.analysis;
-
-
-    // =========================
-    // SHOW DASHBOARD
-    // =========================
-
-    document.getElementById(
-        "loading"
-    ).style.display = "none";
-
-
-    document.getElementById(
-        "dashboard"
-    ).style.display = "block";
-
-
-    // =========================
-    // STUDENT INFORMATION
-    // =========================
-
-    document.getElementById(
-        "welcomeUser"
-    ).innerText =
-        "Welcome back, " +
-        student.name +
-        " 👋";
-
-
-    document.getElementById(
-        "studentBranch"
-    ).innerText =
-        "Branch: " +
-        student.branch;
-
-
-    document.getElementById(
-        "studentYear"
-    ).innerText =
-        "Year: " +
-        student.year;
-
-
-    document.getElementById(
-        "studentGoal"
-    ).innerText =
-        "Goal: " +
-        student.careerGoal;
-
-
-    // =========================
-    // CAREER MATCH
-    // =========================
-
-    document.getElementById(
-        "careerMatch"
-    ).innerText =
-        analysis.careerMatch +
-        "%";
-
-
-    // =========================
-    // READINESS
-    // =========================
-
-    document.getElementById(
-        "readiness"
-    ).innerText =
-        analysis.readiness +
-        "%";
-
-
-    document.getElementById(
-        "readinessBar"
-    ).style.width =
-        analysis.readiness +
-        "%";
-
-
-    // =========================
-    // SKILL COUNT
-    // =========================
-
-    document.getElementById(
-        "skillCount"
-    ).innerText =
-        student.skills.length;
-
-
-    // =========================
-    // SKILL GAP ANALYSIS
-    // =========================
-
-    const skillsContainer =
-        document.getElementById(
-            "skillsContainer"
-        );
-
-
-    skillsContainer.innerHTML = "";
-
-
-    if (
-        analysis.skillGaps &&
-        analysis.skillGaps.length > 0
-    ) {
-
-
-        analysis.skillGaps.forEach(
-            function(skill, index) {
-
-
-                const percentage =
-                    Math.max(
-                        40,
-                        70 - (index * 8)
-                    );
-
-
-                skillsContainer.innerHTML += `
-
-                    <div class="skill">
-
-                        <div class="skill-title">
-
-                            <span>
-                                ${skill}
-                            </span>
-
-                            <span>
-                                ${percentage}%
-                            </span>
-
-                        </div>
-
-
-                        <div class="progress">
-
-                            <div
-                                class="progress-bar"
-                                style="width:${percentage}%">
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                `;
-
-            }
-        );
-
-    }
-
-    else {
-
-        skillsContainer.innerHTML = `
-
-            <p class="no-data">
-                No skill gaps available.
-            </p>
-
-        `;
-
-    }
-
-
-    // =========================
-    // RECOMMENDATIONS
-    // =========================
-
-    const recommendations =
-        document.getElementById(
-            "recommendationsContainer"
-        );
-
-
-    recommendations.innerHTML = "";
-
-
-    if (
-        analysis.recommendations &&
-        analysis.recommendations.length > 0
-    ) {
-
-
-        analysis.recommendations.forEach(
-            function(item) {
-
-
-                recommendations.innerHTML += `
-
-                    <div class="recommendation">
-
-                        <small>
-                            ${item.type.toUpperCase()}
-                        </small>
-
-                        <h3>
-                            ${item.title}
-                        </h3>
-
-                        <p>
-                            ${item.reason}
-                        </p>
-
-
-                        <button
-                            onclick="
-                                alert(
-                                    'Recommended by CareerOne based on your profile.'
-                                )
-                            ">
-
-                            Explore
-
-                        </button>
-
-                    </div>
-
-                `;
-
-            }
-        );
-
-    }
-
-    else {
-
-        recommendations.innerHTML = `
-
-            <p class="no-data">
-                No recommendations available.
-            </p>
-
-        `;
-
-    }
-
+function openLink(url) {
+    window.open(url, "_blank");
 }
 
-
-// ===============================
-// LOAD SAVED DATA
-// ===============================
-
-const savedData =
-    localStorage.getItem(
-        "careerAnalysis"
-    );
-
-
-if (savedData) {
-
-
-    try {
-
-
-        const data =
-            JSON.parse(savedData);
-
-
-        if (
-            data.student &&
-            data.analysis
-        ) {
-
-            showDashboard(data);
-
-        }
-
-        else {
-
-            throw new Error(
-                "Invalid career analysis data."
-            );
-
-        }
-
-
-    }
-
-    catch(error) {
-
-
-        console.error(
-            "Dashboard Error:",
-            error
-        );
-
-
-        document.getElementById(
-            "loading"
-        ).innerHTML = `
-
-            <h2>
-                ⚠️ Dashboard Error
-            </h2>
-
-            <p>
-                Please create your profile again.
-            </p>
-
-            <br>
-
-            <a href="profile.html">
-                Go to Profile
-            </a>
-
-        `;
-
-    }
-
-
-}
-
-else {
-
-
-    document.getElementById(
-        "loading"
-    ).innerHTML = `
-
-        <h2>
-            ⚠️ No Career Analysis Found
-        </h2>
-
-        <p>
-            Please complete your profile first.
-        </p>
-
-        <br>
-
-        <a href="profile.html">
-            Create Profile →
-        </a>
-
-    `;
-
-}
-
-
-// ===============================
-// LOGOUT
-// ===============================
 
 function logout() {
 
+    localStorage.removeItem("careerOneUser");
+    localStorage.removeItem("careerAnalysis");
 
-    localStorage.removeItem(
-        "careerAnalysis"
-    );
-
-
-    localStorage.removeItem(
-        "careerOneUser"
-    );
-
-
-    window.location.href =
-        "index.html";
+    window.location.href = "index.html";
 
 }
 
 </script>
 
-
 </body>
-
 </html>
