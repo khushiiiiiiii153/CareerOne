@@ -58,7 +58,7 @@ async function loginUser() {
     try {
 
         const response = await fetch(
-            "http://localhost:5000/api/login",
+            "https://careerone-backend.onrender.com/api/login",
             {
 
                 method: "POST",
