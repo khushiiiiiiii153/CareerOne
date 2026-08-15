@@ -1,11 +1,11 @@
 
-🚀 CareerOne
+# 🚀 CareerOne
 
-AI-Powered Student Career Guidance Platform
+## AI-Powered Student Career Guidance Platform
 
 CareerOne is a smart platform that helps students discover suitable career paths, courses, internships, and hackathons based on their skills and career goals.
 
-✨ Features
+## ✨ Features
 
 👤 Student Career Profile
 🤖 Career Analysis
@@ -14,7 +14,7 @@ CareerOne is a smart platform that helps students discover suitable career paths
 🚀 Hackathon Opportunities
 📊 Personalized Dashboard
 
-🛠️ Technology Stack
+## 🛠️ Technology Stack
 
 HTML
 CSS
@@ -25,17 +25,17 @@ GitHub
 Vercel
 Render
 
-🔄 Working
+## 🔄 Working
 
 Login → Create Profile → Enter Skills & Career Goal → Career Analysis → Dashboard → Courses / Internships / Hackathons
 
-⚙️ Setup Instructions
+## ⚙️ Setup Instructions
 
-Frontend
+ ### Frontend
 
 Open the "frontend" folder and run "index.html" using a browser or VS Code Live Server.
 
-Backend
+ ### Backend
 
 Open the "backend" folder in the terminal and install the required dependencies:
 
@@ -47,7 +47,7 @@ node server.js
 
 The frontend communicates with the backend through APIs.
 
-📦 Dependencies
+## 📦 Dependencies
 
 Backend dependencies are listed in "backend/package.json".
 
@@ -55,21 +55,21 @@ Install them using:
 
 npm install
 
-📁 Project Structure
+## 📁 Project Structure
 
 CareerOne/
 ├── frontend/
 ├── backend/
 └── README.md
 
-🌐 Live Demo
+## 🌐 Live Demo
 
 https://career-one-puce.vercel.app/
 
-🎯 Project
+## 🎯 Project
 
 Developed for NexBuildOn Hack 2026.
 
-🚀 CareerOne
+## 🚀 CareerOne
 
 Learn. Build. Grow. 🚀
